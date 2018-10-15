@@ -1,3 +1,9 @@
 export const exercises = (state = [], action) => {
-  return state;
+  switch (action.type) {
+    case "ADD_EXERCISE":
+      // return [...state, action.exercise];
+      return state.concat(action.exercise);
+    default:
+      return state;
+  }
 };
