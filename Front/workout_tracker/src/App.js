@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import * as actions from "./actions";
 import { connect } from "react-redux";
 import BuildWorkout from "./components/BuildWorkout";
+import Login from "./components/Login";
 
 import "./App.css";
 
@@ -25,8 +26,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
-
+        {/* <Navbar /> */}
+        {/* <Login /> */}
         <h1>Main Page</h1>
         <button onClick={this.handleClick}>Test API call</button>
         <BuildWorkout />

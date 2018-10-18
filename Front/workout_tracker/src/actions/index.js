@@ -4,3 +4,10 @@ export const addExercise = exercise => {
     exercise
   };
 };
+
+export const registerUser = userId => {
+  return {
+    type: "START_SESSION",
+    userId
+  };
+};

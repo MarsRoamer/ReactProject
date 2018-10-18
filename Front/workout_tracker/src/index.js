@@ -6,6 +6,9 @@ import * as serviceWorker from "./serviceWorker";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { rootReducer } from "./reducers/rootReducer";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Login from "./components/Login";
+import Navbar from "./components/Navbar";
 
 const store = createStore(
   rootReducer,
@@ -14,8 +17,16 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <React.Fragment>
+        <Navbar />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={App} />
+        {/* <App /> */}
+      </React.Fragment>
+    </Router>
   </Provider>,
+
   document.getElementById("root")
 );
 
