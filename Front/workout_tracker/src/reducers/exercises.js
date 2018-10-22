@@ -3,6 +3,7 @@ export const exercises = (state = [], action) => {
     case "ADD_EXERCISE":
       return state.concat(action.exercise);
     // return [...state, exercises: action.exercise];
+
     default:
       return state;
   }

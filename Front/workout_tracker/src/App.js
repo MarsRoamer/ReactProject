@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import BuildWorkout from "./components/BuildWorkout";
 import Login from "./components/Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import AddNewExercise from "./components/AddNewExercise";
 
 import "./App.css";
 
@@ -28,29 +29,30 @@ class App extends Component {
     this.props.endSession();
   };
 
+  addNew = e => {
+    debugger;
+  };
+
   render() {
     const loggedIn = () => {
       if (this.props.userId === "") {
         return <Login />;
+      } else {
+        return <BuildWorkout />;
       }
     };
-    // return (
-    //   <div>
-    //     {/* <Navbar /> */}
-    //     {/* <Login /> */}
-    //     <h1>Main Page</h1>
 
-    //     <BuildWorkout />
-    //   </div>
-    // );
     return (
       <Router>
         <React.Fragment>
           <Navbar />
-          <button onClick={this.handleClick}>Test API call</button>
+
           {loggedIn()}
           <Route exact path="/login" component={Login} />
-          <BuildWorkout />
+          <Route exact path="/addnewexercise" component={AddNewExercise} />
+          {/* <BuildWorkout /> */}
+          <button onClick={e => this.addNew(e)}>Add New Exercise</button>
+          <AddNewExercise addNewExercise={this.props.addNewExercise} />
           <button onClick={e => this.handleClick(e)}>LogOut</button>
         </React.Fragment>
       </Router>

@@ -17,3 +17,17 @@ export const endSession = () => {
     type: "END_SESSION"
   };
 };
+
+export const addNewExercise = exercise => {
+  return dispatch => {
+    return fetch("/exercises", {
+      method: "post",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      },
+      body: JSON.stringify({ exercise })
+    })
+      .then(response => response.json())
+      .then(myJson => console.log(myJson));
+  };
+};
