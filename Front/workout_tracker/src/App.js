@@ -5,6 +5,7 @@ import * as actions from "./actions";
 import { connect } from "react-redux";
 import BuildWorkout from "./components/BuildWorkout";
 import Login from "./components/Login";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import "./App.css";
 
@@ -23,20 +24,47 @@ class App extends Component {
       });
   }
 
+  handleClick = e => {
+    this.props.endSession();
+  };
+
   render() {
+    const loggedIn = () => {
+      if (this.props.userId === "") {
+        return <Login />;
+      }
+    };
+    // return (
+    //   <div>
+    //     {/* <Navbar /> */}
+    //     {/* <Login /> */}
+    //     <h1>Main Page</h1>
+
+    //     <BuildWorkout />
+    //   </div>
+    // );
     return (
-      <div>
-        {/* <Navbar /> */}
-        {/* <Login /> */}
-        <h1>Main Page</h1>
-        <button onClick={this.handleClick}>Test API call</button>
-        <BuildWorkout />
-      </div>
+      <Router>
+        <React.Fragment>
+          <Navbar />
+          <button onClick={this.handleClick}>Test API call</button>
+          {loggedIn()}
+          <Route exact path="/login" component={Login} />
+          <BuildWorkout />
+          <button onClick={e => this.handleClick(e)}>LogOut</button>
+        </React.Fragment>
+      </Router>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    userId: state.session.userId
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(App);

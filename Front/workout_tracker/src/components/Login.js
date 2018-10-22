@@ -33,8 +33,13 @@ class Login extends Component {
     })
       .then(response => response.json())
       .then(myJson => {
-        this.props.registerUser(myJson.id);
+        if (myJson.id) {
+          this.props.registerUser(myJson.id);
+        } else {
+          return;
+        }
       });
+    // .then(myJson => console.log(myJson));
   };
 
   render() {

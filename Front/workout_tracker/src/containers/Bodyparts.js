@@ -7,7 +7,7 @@ class Bodyparts extends Component {
   render() {
     const { chest, shoulders, biceps, triceps, back } = this.props;
     return (
-      <div>
+      <div className="container">
         <Bodypart
           chest={chest}
           shoulders={shoulders}

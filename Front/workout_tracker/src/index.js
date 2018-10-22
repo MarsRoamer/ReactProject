@@ -3,28 +3,23 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { rootReducer } from "./reducers/rootReducer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
+import thunk from "redux-thunk";
 
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunk)
 );
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <React.Fragment>
-        <Navbar />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/" component={App} />
-        {/* <App /> */}
-      </React.Fragment>
-    </Router>
+    <App />
   </Provider>,
 
   document.getElementById("root")

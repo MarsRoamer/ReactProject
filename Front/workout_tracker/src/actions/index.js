@@ -11,3 +11,9 @@ export const registerUser = userId => {
     userId
   };
 };
+
+export const endSession = () => {
+  return {
+    type: "END_SESSION"
+  };
+};
