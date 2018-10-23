@@ -28,6 +28,6 @@ export const addNewExercise = exercise => {
       body: JSON.stringify({ exercise })
     })
       .then(response => response.json())
-      .then(myJson => console.log(myJson));
+      .then(myJson => dispatch(addExercise(myJson)));
   };
 };

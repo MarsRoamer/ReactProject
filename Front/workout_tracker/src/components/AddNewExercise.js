@@ -30,16 +30,27 @@ export default class AddNewExercise extends Component {
         bodypart: ""
       });
     }
+    this.props.history.push("/buildworkout");
   };
 
   render() {
     return (
       <div className="form-group">
         <label htmlFor="">Exercise Name: </label>
-        <input type="text" onChange={this.handleChange} name="name" />
+        <input
+          type="text"
+          onChange={this.handleChange}
+          name="name"
+          value={this.state.name}
+        />
         <br />
         <label htmlFor="">Description of Exercise: </label>
-        <input type="text" onChange={this.handleChange} name="description" />
+        <input
+          type="text"
+          onChange={this.handleChange}
+          name="description"
+          value={this.state.description}
+        />
         <br />
         {/* <label htmlFor="">Primary target of exercise: </label> */}
         {/* <input type="text" onChange={this.handleChange} name="bodypart" /> */}
@@ -48,6 +59,7 @@ export default class AddNewExercise extends Component {
           id="sel1"
           onChange={this.handleChange}
           name="bodypart"
+          //   value="Please Select a primary bodypart"
         >
           <option>Please Select a primary bodypart</option>
           <option>chest</option>
@@ -62,6 +74,7 @@ export default class AddNewExercise extends Component {
         <br />
 
         <input type="submit" onClick={e => this.handleSubmit(e)} />
+        {/* <button onClick={e => this.handleSubmit(e)}>Submit</button> */}
       </div>
     );
   }

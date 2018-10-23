@@ -5,11 +5,12 @@ import * as actions from "./actions";
 import { connect } from "react-redux";
 import BuildWorkout from "./components/BuildWorkout";
 import Login from "./components/Login";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import AddNewExercise from "./components/AddNewExercise";
 
 import "./App.css";
 
+//
 class App extends Component {
   handleClick = e => {
     fetch("/exercises")
@@ -33,12 +34,16 @@ class App extends Component {
     debugger;
   };
 
+  handleTest = e => {
+    debugger;
+  };
+
   render() {
     const loggedIn = () => {
       if (this.props.userId === "") {
         return <Login />;
       } else {
-        return <BuildWorkout />;
+        // return <BuildWorkout />;
       }
     };
 
@@ -48,12 +53,22 @@ class App extends Component {
           <Navbar />
 
           {loggedIn()}
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/addnewexercise" component={AddNewExercise} />
-          {/* <BuildWorkout /> */}
-          <button onClick={e => this.addNew(e)}>Add New Exercise</button>
-          <AddNewExercise addNewExercise={this.props.addNewExercise} />
-          <button onClick={e => this.handleClick(e)}>LogOut</button>
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route
+              exact
+              path="/addnewexercise"
+              render={() => (
+                <AddNewExercise addNewExercise={this.props.addNewExercise} />
+              )}
+            />
+            <Route exact path="/buildworkout" component={BuildWorkout} />
+
+            {/* <button onClick={e => this.addNew(e)}>Add New Exercise</button> */}
+            {/* <AddNewExercise addNewExercise={this.props.addNewExercise} /> */}
+            <button onClick={e => this.handleClick(e)}>LogOut</button>
+            <button onClick={e => this.handleTest(e)}>Test</button>
+          </Switch>
         </React.Fragment>
       </Router>
     );
