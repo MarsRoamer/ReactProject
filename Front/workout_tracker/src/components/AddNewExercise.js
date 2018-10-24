@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
-export default class AddNewExercise extends Component {
-  constructor() {
-    super();
+class AddNewExercise extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       name: "",
       description: "",
@@ -55,7 +56,7 @@ export default class AddNewExercise extends Component {
         {/* <label htmlFor="">Primary target of exercise: </label> */}
         {/* <input type="text" onChange={this.handleChange} name="bodypart" /> */}
         <select
-          class="form-control"
+          className="form-control"
           id="sel1"
           onChange={this.handleChange}
           name="bodypart"
@@ -73,9 +74,11 @@ export default class AddNewExercise extends Component {
         </select>
         <br />
 
-        <input type="submit" onClick={e => this.handleSubmit(e)} />
+        <input type="submit" onClick={this.handleSubmit} />
         {/* <button onClick={e => this.handleSubmit(e)}>Submit</button> */}
       </div>
     );
   }
 }
+
+export default withRouter(AddNewExercise);
