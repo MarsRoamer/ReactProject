@@ -31,3 +31,16 @@ export const addNewExercise = exercise => {
       .then(myJson => dispatch(addExercise(myJson)));
   };
 };
+
+export const buildWorkout = exercises => {
+  return {
+    type: "BUILD_WORKOUT",
+    exercises
+  };
+};
+
+export const clearWorkout = () => {
+  return {
+    type: "CLEAR_WORKOUT"
+  };
+};

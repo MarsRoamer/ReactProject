@@ -7,10 +7,10 @@ import BuildWorkout from "./components/BuildWorkout";
 import Login from "./components/Login";
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import AddNewExercise from "./components/AddNewExercise";
+import ConfirmBuiltWorkout from "./components/ConfirmBuiltWorkout";
 
 import "./App.css";
 
-//
 class App extends Component {
   handleClick = e => {
     fetch("/exercises")
@@ -28,22 +28,13 @@ class App extends Component {
 
   handleClick = e => {
     this.props.endSession();
-  };
-
-  addNew = e => {
-    debugger;
-  };
-
-  handleTest = e => {
-    debugger;
+    this.props.clearWorkout();
   };
 
   render() {
     const loggedIn = () => {
       if (this.props.userId === "") {
         return <Login />;
-      } else {
-        // return <BuildWorkout />;
       }
     };
 
@@ -63,9 +54,11 @@ class App extends Component {
               )}
             />
             <Route exact path="/buildworkout" component={BuildWorkout} />
-
-            {/* <button onClick={e => this.addNew(e)}>Add New Exercise</button> */}
-            {/* <AddNewExercise addNewExercise={this.props.addNewExercise} /> */}
+            <Route
+              exact
+              path="/confirmworkout"
+              render={() => <ConfirmBuiltWorkout />}
+            />
             <button onClick={e => this.handleClick(e)}>LogOut</button>
             <button onClick={e => this.handleTest(e)}>Test</button>
           </Switch>

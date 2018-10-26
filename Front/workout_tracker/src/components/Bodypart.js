@@ -1,22 +1,41 @@
 import React, { Component } from "react";
 import index from "../index.css";
+import { withRouter } from "react-router-dom";
 
-export default class Bodypart extends Component {
+class Bodypart extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   handleSubmit = e => {
+    e.preventDefault();
     let checkedValue = [];
     let inputElements = document.getElementsByClassName("exerciseCheckbox");
+    let sets = document.getElementsByClassName("sets");
+    let objs = [];
+    let exercise;
     for (let i = 0; i < inputElements.length; i++) {
       if (inputElements[i].checked) {
         checkedValue.push(inputElements[i].value);
       }
     }
-    debugger;
+    for (let i = 0; i < checkedValue.length; i++) {
+      exercise = this.props.all.filter(
+        lift => lift.id === parseInt(checkedValue[i])
+      );
+      objs.push(exercise);
+    }
+    objs = objs.reduce((a, b) => a.concat(b));
+    this.props.buildWorkout(objs);
+
+    this.props.history.push("/confirmworkout");
   };
 
   render() {
     return (
       <div>
-        <form onSubmit={e => this.handleSubmit(e)}>
+        <form>
           <div className="card-group">
             <div className="col-sm-4">
               <div className="cards">
@@ -99,12 +118,38 @@ export default class Bodypart extends Component {
                 </div>
               ))}
             </div>
+            <div className="col-sm-4">
+              <div className="cards">
+                <h2>Legs</h2>
+                {this.props.legs.map(exercise => (
+                  <div className="card">
+                    <div className="checkbox">
+                      <label>
+                        <input
+                          type="checkbox"
+                          className="exerciseCheckbox"
+                          value={exercise.id}
+                        />
+                        {exercise.name}
+                      </label>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
+
           <div id="partSubmit">
-            <input type="submit" value="Build Your Workout!" />
+            <input
+              type="submit"
+              onClick={this.handleSubmit}
+              value="Build Your Workout!"
+            />
           </div>
         </form>
       </div>
     );
   }
 }
+
+export default withRouter(Bodypart);

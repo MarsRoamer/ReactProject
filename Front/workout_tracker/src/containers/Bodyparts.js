@@ -2,10 +2,20 @@ import React, { Component } from "react";
 import { BodyPart } from "../components/Bodypart";
 import { connect } from "react-redux";
 import Bodypart from "../components/Bodypart";
+import * as actions from "../actions";
 
 class Bodyparts extends Component {
   render() {
-    const { chest, shoulders, biceps, triceps, back } = this.props;
+    const {
+      chest,
+      shoulders,
+      biceps,
+      triceps,
+      back,
+      legs,
+      all,
+      buildWorkout
+    } = this.props;
     return (
       <div className="container">
         <Bodypart
@@ -14,6 +24,9 @@ class Bodyparts extends Component {
           biceps={biceps}
           triceps={triceps}
           back={back}
+          legs={legs}
+          all={all}
+          buildWorkout={buildWorkout}
         />
       </div>
     );
@@ -30,8 +43,13 @@ const mapStateToProps = state => {
     triceps: state.exercises.filter(
       exercise => exercise.bodypart === "triceps"
     ),
-    back: state.exercises.filter(exercise => exercise.bodypart === "back")
+    back: state.exercises.filter(exercise => exercise.bodypart === "back"),
+    legs: state.exercises.filter(exercise => exercise.bodypart === "legs"),
+    all: state.exercises
   };
 };
 
-export default connect(mapStateToProps)(Bodyparts);
+export default connect(
+  mapStateToProps,
+  actions
+)(Bodyparts);
