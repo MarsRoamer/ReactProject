@@ -5,6 +5,13 @@ export const addExercise = exercise => {
   };
 };
 
+export const addBuiltWorkout = exercises => {
+  return {
+    type: "BUILT_WORKOUT",
+    exercises
+  };
+};
+
 export const registerUser = userId => {
   return {
     type: "START_SESSION",
@@ -42,5 +49,19 @@ export const buildWorkout = exercises => {
 export const clearWorkout = () => {
   return {
     type: "CLEAR_WORKOUT"
+  };
+};
+
+export const confirmWorkout = workout => {
+  return dispatch => {
+    return fetch("/user_exercises", {
+      method: "post",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      },
+      body: JSON.stringify({ workout })
+    })
+      .then(response => response.json())
+      .then(myJson => dispatch(addBuiltWorkout(myJson.arr)));
   };
 };

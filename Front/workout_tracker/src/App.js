@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import AddNewExercise from "./components/AddNewExercise";
 import ConfirmBuiltWorkout from "./components/ConfirmBuiltWorkout";
+import DisplayWorkout from "./components/DisplayWorkout";
 
 import "./App.css";
 
@@ -57,7 +58,18 @@ class App extends Component {
             <Route
               exact
               path="/confirmworkout"
-              render={() => <ConfirmBuiltWorkout />}
+              render={() => (
+                <ConfirmBuiltWorkout
+                  userWorkout={this.props.workout}
+                  userId={this.props.userId}
+                  confirmWorkout={this.props.confirmWorkout}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/displayworkout"
+              render={() => <DisplayWorkout />}
             />
             <button onClick={e => this.handleClick(e)}>LogOut</button>
             <button onClick={e => this.handleTest(e)}>Test</button>
@@ -70,7 +82,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    userId: state.session.userId
+    userId: state.session.userId,
+    workout: state.workout
   };
 };
 
