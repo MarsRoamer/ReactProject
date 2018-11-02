@@ -9,7 +9,8 @@ class ConfirmBuiltWorkout extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.confirmWorkout(this.state);
+    // this.props.confirmWorkout(this.state);
+    this.props.buildWorkout(this.state);
     this.setState({});
     this.props.history.push("/displayworkout");
   };

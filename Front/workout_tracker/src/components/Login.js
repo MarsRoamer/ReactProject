@@ -39,7 +39,7 @@ class Login extends Component {
           return;
         }
       });
-    // .then(myJson => console.log(myJson));
+    // this.props.history.push("/buildworkout");
   };
 
   render() {

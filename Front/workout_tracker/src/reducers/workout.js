@@ -3,7 +3,7 @@ export const workout = (state = [], action) => {
     case "BUILD_WORKOUT":
       return action.exercises;
     case "CLEAR_WORKOUT":
-      return [];
+      return [...state, action.exercises];
     case "BUILT_WORKOUT":
       return action.exercises;
     default:

@@ -29,7 +29,7 @@ class Bodypart extends Component {
     objs = objs.reduce((a, b) => a.concat(b));
     this.props.buildWorkout(objs);
 
-    this.props.history.push("/confirmworkout");
+    this.props.history.push("/displayworkout");
   };
 
   render() {

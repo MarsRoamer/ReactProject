@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import BodyParts from "../containers/Bodyparts";
-import { Link } from "react-router-dom";
 
 export default class BuildWorkout extends Component {
   addNew = e => {

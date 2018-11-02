@@ -20,3 +20,8 @@ code {
 #partSubmit {
   text-align: center;
 }
+
+#tablez {
+  border: solid;
+  width: 600px;
+}

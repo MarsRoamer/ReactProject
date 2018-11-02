@@ -9,6 +9,7 @@ import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import AddNewExercise from "./components/AddNewExercise";
 import ConfirmBuiltWorkout from "./components/ConfirmBuiltWorkout";
 import DisplayWorkout from "./components/DisplayWorkout";
+import TableTest from "./components/TableTest";
 
 import "./App.css";
 
@@ -44,8 +45,8 @@ class App extends Component {
         <React.Fragment>
           <Navbar />
 
-          {loggedIn()}
           <Switch>
+            {/* {loggedIn()} */}
             <Route exact path="/login" component={Login} />
             <Route
               exact
@@ -54,7 +55,12 @@ class App extends Component {
                 <AddNewExercise addNewExercise={this.props.addNewExercise} />
               )}
             />
-            <Route exact path="/buildworkout" component={BuildWorkout} />
+            <Route exact path="/buildworkout" render={() => <BuildWorkout />} />
+            <Route
+              exact
+              path="/tabletest"
+              render={() => <TableTest workout={this.props.workout} />}
+            />
             <Route
               exact
               path="/confirmworkout"
@@ -62,14 +68,14 @@ class App extends Component {
                 <ConfirmBuiltWorkout
                   userWorkout={this.props.workout}
                   userId={this.props.userId}
-                  confirmWorkout={this.props.confirmWorkout}
+                  buildWorkout={this.props.buildWorkout}
                 />
               )}
             />
             <Route
               exact
               path="/displayworkout"
-              render={() => <DisplayWorkout />}
+              render={() => <DisplayWorkout workout={this.props.workout} />}
             />
             <button onClick={e => this.handleClick(e)}>LogOut</button>
             <button onClick={e => this.handleTest(e)}>Test</button>
@@ -84,6 +90,7 @@ const mapStateToProps = state => {
   return {
     userId: state.session.userId,
     workout: state.workout
+    // exercises: state.exercises
   };
 };
 

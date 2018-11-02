@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import thunk from "redux-thunk";
+import index from "./index.css";
 
 const store = createStore(
   rootReducer,

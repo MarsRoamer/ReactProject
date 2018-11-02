@@ -53,15 +53,15 @@ export const clearWorkout = () => {
 };
 
 export const confirmWorkout = workout => {
-  return dispatch => {
-    return fetch("/user_exercises", {
-      method: "post",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      },
-      body: JSON.stringify({ workout })
-    })
-      .then(response => response.json())
-      .then(myJson => dispatch(addBuiltWorkout(myJson.arr)));
-  };
+  // return dispatch => {
+  //   return fetch("/user_exercises", {
+  //     method: "post",
+  //     headers: {
+  //       "Content-type": "application/json; charset=UTF-8"
+  //     },
+  //     body: JSON.stringify({ workout })
+  //   })
+  //     .then(response => response.json())
+  //     .then(myJson => dispatch(addBuiltWorkout(myJson.arr)));
+  // };
 };
