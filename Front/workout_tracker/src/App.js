@@ -46,7 +46,7 @@ class App extends Component {
           <Navbar />
 
           <Switch>
-            {/* {loggedIn()} */}
+            {loggedIn()}
             <Route exact path="/login" component={Login} />
             <Route
               exact
@@ -75,7 +75,13 @@ class App extends Component {
             <Route
               exact
               path="/displayworkout"
-              render={() => <DisplayWorkout workout={this.props.workout} />}
+              render={() => (
+                <DisplayWorkout
+                  workout={this.props.workout}
+                  userId={this.props.userId}
+                  saveWorkout={this.props.saveWorkout}
+                />
+              )}
             />
             <button onClick={e => this.handleClick(e)}>LogOut</button>
             <button onClick={e => this.handleTest(e)}>Test</button>

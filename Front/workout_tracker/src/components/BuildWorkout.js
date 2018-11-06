@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import BodyParts from "../containers/Bodyparts";
+import { withRouter } from "react-router-dom";
 
-export default class BuildWorkout extends Component {
+class BuildWorkout extends Component {
   addNew = e => {
     this.props.history.push("/addnewexercise");
   };
@@ -16,3 +17,5 @@ export default class BuildWorkout extends Component {
     );
   }
 }
+
+export default withRouter(BuildWorkout);

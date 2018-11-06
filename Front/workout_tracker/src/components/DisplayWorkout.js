@@ -12,7 +12,13 @@ export default class DisplayWorkout extends Component {
       <div>
         <h1>Display workout here!</h1>
         {this.props.workout.map(lift => {
-          return <Lift lift={lift} />;
+          return (
+            <Lift
+              lift={lift}
+              userId={this.props.userId}
+              saveWorkout={this.props.saveWorkout}
+            />
+          );
         })}
         {/* <button onClick={this.handleClick}>Click here!</button> */}
       </div>

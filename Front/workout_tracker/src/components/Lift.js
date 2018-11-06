@@ -1,12 +1,10 @@
 import React, { Component } from "react";
+import LiftHistory from "./LiftHistory";
 
 export default class Lift extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      exerciseId: props.lift.id,
-      userId: this.props.userId
-    };
+    this.state = {};
   }
 
   handleChange = e => {
@@ -17,9 +15,14 @@ export default class Lift extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let exercise = this.state;
-    let data = dataCleanse(exercise);
+
+    let user = { userId: this.props.userId };
+    let exercise = { exerciseId: this.props.lift.id };
+    let data = dataCleanse(this.state);
+    let fullData = [user, exercise, ...data];
     debugger;
+    this.props.saveWorkout(fullData);
+    this.setState({});
   };
 
   render() {
@@ -68,7 +71,11 @@ export default class Lift extends Component {
                   />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Reps4"
+                  />
                 </td>
                 <td>
                   <input type="text" />
@@ -138,6 +145,7 @@ export default class Lift extends Component {
           </table>
           <input type="submit" onClick={this.handleSubmit} />
         </form>
+        <LiftHistory />
       </div>
     );
   }
@@ -147,8 +155,12 @@ const dataCleanse = dataset => {
   let arr = [];
   let arr1 = [];
   let arrW = [];
+  let arrR = [];
+  let cleansed = [];
+  let test;
 
   for (const key in dataset) {
+    console.log(`${key}:${dataset[key]}`);
     if (key[0] === "R") {
       let obj = {};
       obj[`${key}`] = parseInt(dataset[key]);
@@ -159,11 +171,27 @@ const dataCleanse = dataset => {
       arr1.push(obj);
     }
   }
-  for (let i = 0; i < arr.length; i++) {
-    let obj = {};
-    obj[Object.values(arr[i])] = Object.values(arr1[i])[0];
-    arrW.push(obj);
+
+  for (let i = 0; i < arr1.length; i++) {
+    arrW.push(undefined);
+    arrR.push(undefined);
   }
 
-  return arrW;
+  arr.forEach(element => {
+    test = Object.keys(element)[0][4] - 1;
+    arrR.splice(test, 1, element);
+  });
+
+  arr1.forEach(element => {
+    test = Object.keys(element)[0][6] - 1;
+    arrW.splice(test, 1, element);
+  });
+
+  for (let i = 0; i < arr.length; i++) {
+    let obj = {};
+    obj[Object.values(arrR[i])] = Object.values(arrW[i])[0];
+    cleansed.push(obj);
+  }
+
+  return cleansed;
 };

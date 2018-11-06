@@ -52,6 +52,19 @@ export const clearWorkout = () => {
   };
 };
 
+export const saveWorkout = workout => {
+  debugger;
+  return dispatch => {
+    return fetch("/user_exercises", {
+      method: "post",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      },
+      body: JSON.stringify(workout)
+    });
+  };
+};
+
 export const confirmWorkout = workout => {
   // return dispatch => {
   //   return fetch("/user_exercises", {
