@@ -20,9 +20,12 @@ export default class Lift extends Component {
     let exercise = { exerciseId: this.props.lift.id };
     let data = dataCleanse(this.state);
     let fullData = [user, exercise, ...data];
-    debugger;
     this.props.saveWorkout(fullData);
     this.setState({});
+  };
+
+  componentDidMount = () => {
+    this.props.getLiftHistory(this.props.userId, this.props.lift.id);
   };
 
   render() {
@@ -145,7 +148,10 @@ export default class Lift extends Component {
           </table>
           <input type="submit" onClick={this.handleSubmit} />
         </form>
-        <LiftHistory />
+        <LiftHistory
+          liftHistory={this.props.liftHistory}
+          lift={this.props.lift.id}
+        />
       </div>
     );
   }

@@ -80,6 +80,9 @@ class App extends Component {
                   workout={this.props.workout}
                   userId={this.props.userId}
                   saveWorkout={this.props.saveWorkout}
+                  liftHistory={this.props.liftHistory}
+                  saveLift={this.props.savedLifts}
+                  getLiftHistory={this.props.getLiftHistory}
                 />
               )}
             />
@@ -95,7 +98,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     userId: state.session.userId,
-    workout: state.workout
+    workout: state.workout,
+    liftHistory: state.liftHistory
     // exercises: state.exercises
   };
 };

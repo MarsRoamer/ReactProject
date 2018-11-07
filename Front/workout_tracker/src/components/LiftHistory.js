@@ -26,15 +26,19 @@ export default class LiftHistory extends Component {
 
   showHistory = () => {
     if (this.state.show === true) {
-      return <History />;
+      let filtered = this.props.liftHistory.filter(
+        lift => lift.exercise_id === this.props.lift
+      );
+      debugger;
+      return <History liftHistory={filtered} />;
     }
   };
 
   render() {
     return (
       <div>
-        <button onClick={this.handleClick}>{this.state.text}</button>
         {this.showHistory()}
+        <button onClick={this.handleClick}>{this.state.text}</button>
       </div>
     );
   }

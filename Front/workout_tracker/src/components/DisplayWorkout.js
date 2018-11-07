@@ -17,10 +17,11 @@ export default class DisplayWorkout extends Component {
               lift={lift}
               userId={this.props.userId}
               saveWorkout={this.props.saveWorkout}
+              liftHistory={this.props.liftHistory}
+              getLiftHistory={this.props.getLiftHistory}
             />
           );
         })}
-        {/* <button onClick={this.handleClick}>Click here!</button> */}
       </div>
     );
   }

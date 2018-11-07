@@ -52,8 +52,29 @@ export const clearWorkout = () => {
   };
 };
 
+export const savedLifts = lifts => {
+  return {
+    type: "SAVE_LIFTS",
+    lifts
+  };
+};
+
+export const getLiftHistory = (user, lift) => {
+  let obj = { userId: user, liftId: lift };
+  return dispatch => {
+    return fetch("/user_exercises", {
+      method: "post",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      },
+      body: JSON.stringify(obj)
+    })
+      .then(response => response.json())
+      .then(myJson => dispatch(savedLifts(myJson)));
+  };
+};
+
 export const saveWorkout = workout => {
-  debugger;
   return dispatch => {
     return fetch("/user_exercises", {
       method: "post",
@@ -61,7 +82,9 @@ export const saveWorkout = workout => {
         "Content-type": "application/json; charset=UTF-8"
       },
       body: JSON.stringify(workout)
-    });
+    })
+      .then(response => response.json())
+      .then(myJson => dispatch(savedLifts(myJson)));
   };
 };
 
