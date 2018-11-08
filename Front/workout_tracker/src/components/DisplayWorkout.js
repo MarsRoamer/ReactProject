@@ -1,15 +1,23 @@
 import React, { Component } from "react";
 import Lift from "./Lift";
+import { withRouter } from "react-router-dom";
 
-export default class DisplayWorkout extends Component {
+class DisplayWorkout extends Component {
   constructor() {
     super();
     this.state = {};
   }
 
+  hasBuiltWorkout = () => {
+    if (this.props.workout.length === 0) {
+      this.props.history.push("/buildworkout");
+    }
+  };
+
   render() {
     return (
       <div>
+        {this.hasBuiltWorkout()}
         <h1>Display workout here!</h1>
         {this.props.workout.map(lift => {
           return (
@@ -26,3 +34,5 @@ export default class DisplayWorkout extends Component {
     );
   }
 }
+
+export default withRouter(DisplayWorkout);

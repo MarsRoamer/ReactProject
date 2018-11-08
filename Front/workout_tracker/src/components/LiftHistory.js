@@ -29,7 +29,6 @@ export default class LiftHistory extends Component {
       let filtered = this.props.liftHistory.filter(
         lift => lift.exercise_id === this.props.lift
       );
-      debugger;
       return <History liftHistory={filtered} />;
     }
   };

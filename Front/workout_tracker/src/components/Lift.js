@@ -56,6 +56,13 @@ export default class Lift extends Component {
                   <input
                     type="text"
                     onChange={this.handleChange}
+                    name="Reps0"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
                     name="Reps1"
                   />
                 </td>
@@ -81,26 +88,50 @@ export default class Lift extends Component {
                   />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Reps5"
+                  />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Reps6"
+                  />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Reps7"
+                  />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Reps8"
+                  />
                 </td>
                 <td>
-                  <input type="text" />
-                </td>
-                <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Reps9"
+                  />
                 </td>
               </tr>
               <tr>
                 <th scope="row">Weight</th>
+                <td>
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Weight0"
+                  />
+                </td>
                 <td>
                   <input
                     type="text"
@@ -113,13 +144,6 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Weight2"
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    onChange={this.handleChange}
-                    name="Weight3"
                   />
                 </td>
                 <td>
@@ -184,12 +208,12 @@ const dataCleanse = dataset => {
   }
 
   arr.forEach(element => {
-    test = Object.keys(element)[0][4] - 1;
+    test = Object.keys(element)[0][4];
     arrR.splice(test, 1, element);
   });
 
   arr1.forEach(element => {
-    test = Object.keys(element)[0][6] - 1;
+    test = Object.keys(element)[0][6];
     arrW.splice(test, 1, element);
   });
 
