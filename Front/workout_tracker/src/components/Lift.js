@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom";
 import React, { Component } from "react";
 import LiftHistory from "./LiftHistory";
 
@@ -5,6 +6,8 @@ export default class Lift extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    // this.handleTest = this.handleTest.bind(this);
+    // this.myRef = React.createRef;
   }
 
   handleChange = e => {
@@ -21,11 +24,21 @@ export default class Lift extends Component {
     let data = dataCleanse(this.state);
     let fullData = [user, exercise, ...data];
     this.props.saveWorkout(fullData);
+    this.props.unMount(this.props.lift.id);
     this.setState({});
   };
 
   componentDidMount = () => {
     this.props.getLiftHistory(this.props.userId, this.props.lift.id);
+  };
+
+  handleTest = () => {
+    // let test = ReactDOM.findDOMNode(this);
+    // debugger;
+    ReactDOM.unmountComponentAtNode(this.props.ref);
+    // let node = React.createRef.current;
+    // const node = this.myRef.current;  // const node = this.myRef.current;
+    // debugger;
   };
 
   render() {
@@ -57,6 +70,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Reps0"
+                    className="userInput"
                   />
                 </td>
                 <td>
@@ -64,6 +78,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Reps1"
+                    className="userInput"
                   />
                 </td>
                 <td>
@@ -71,6 +86,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Reps2"
+                    className="userInput"
                   />
                 </td>
                 <td>
@@ -78,6 +94,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Reps3"
+                    className="userInput"
                   />
                 </td>
                 <td>
@@ -85,6 +102,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Reps4"
+                    className="userInput"
                   />
                 </td>
                 <td>
@@ -92,6 +110,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Reps5"
+                    className="userInput"
                   />
                 </td>
                 <td>
@@ -99,6 +118,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Reps6"
+                    className="userInput"
                   />
                 </td>
                 <td>
@@ -106,6 +126,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Reps7"
+                    className="userInput"
                   />
                 </td>
                 <td>
@@ -113,6 +134,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Reps8"
+                    className="userInput"
                   />
                 </td>
                 <td>
@@ -120,6 +142,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Reps9"
+                    className="userInput"
                   />
                 </td>
               </tr>
@@ -130,6 +153,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Weight0"
+                    className="userInput"
                   />
                 </td>
                 <td>
@@ -137,6 +161,7 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Weight1"
+                    className="userInput"
                   />
                 </td>
                 <td>
@@ -144,34 +169,71 @@ export default class Lift extends Component {
                     type="text"
                     onChange={this.handleChange}
                     name="Weight2"
+                    className="userInput"
                   />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Weight3"
+                    className="userInput"
+                  />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Weight4"
+                    className="userInput"
+                  />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Weight5"
+                    className="userInput"
+                  />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Weight6"
+                    className="userInput"
+                  />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Weight7"
+                    className="userInput"
+                  />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Weight8"
+                    className="userInput"
+                  />
                 </td>
                 <td>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="Weight9"
+                    className="userInput"
+                  />
                 </td>
               </tr>
             </tbody>
           </table>
           <input type="submit" onClick={this.handleSubmit} />
         </form>
+        <button onClick={this.handleTest}>Test Button</button>
         <LiftHistory
           liftHistory={this.props.liftHistory}
           lift={this.props.lift.id}

@@ -85,19 +85,21 @@ export const saveWorkout = workout => {
     })
       .then(response => response.json())
       .then(myJson => dispatch(savedLifts(myJson)));
+    // .then(myJson => console.log(myJson))
   };
 };
 
-export const confirmWorkout = workout => {
-  // return dispatch => {
-  //   return fetch("/user_exercises", {
-  //     method: "post",
-  //     headers: {
-  //       "Content-type": "application/json; charset=UTF-8"
-  //     },
-  //     body: JSON.stringify({ workout })
-  //   })
-  //     .then(response => response.json())
-  //     .then(myJson => dispatch(addBuiltWorkout(myJson.arr)));
-  // };
+export const createNewUser = userDetails => {
+  return dispatch => {
+    fetch("/users", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      },
+      body: JSON.stringify(userDetails)
+    })
+      .then(response => response.json())
+      // .then(myJson => console.log(myJson))
+      .then(myJson => dispatch(registerUser(myJson["id"])));
+  };
 };

@@ -36,46 +36,63 @@ class AddNewExercise extends Component {
 
   render() {
     return (
-      <div className="form-group">
-        <label htmlFor="">Exercise Name: </label>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          name="name"
-          value={this.state.name}
-        />
-        <br />
-        <label htmlFor="">Description of Exercise: </label>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          name="description"
-          value={this.state.description}
-        />
-        <br />
-        {/* <label htmlFor="">Primary target of exercise: </label> */}
-        {/* <input type="text" onChange={this.handleChange} name="bodypart" /> */}
-        <select
-          className="form-control"
-          id="sel1"
-          onChange={this.handleChange}
-          name="bodypart"
-          //   value="Please Select a primary bodypart"
-        >
-          <option>Please Select a primary bodypart</option>
-          <option>chest</option>
-          <option>shoulders</option>
-          <option>biceps</option>
-          <option>triceps</option>
-          <option>legs</option>
-          <option>back</option>
-          <option>full body</option>
-          <option>misc</option>
-        </select>
-        <br />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+        className="pt-5"
+      >
+        <form action="">
+          <div className="form-group">
+            <label htmlFor="">Exercise Name: </label>
+            <input
+              type="text"
+              onChange={this.handleChange}
+              name="name"
+              value={this.state.name}
+              className="form-control"
+            />
+            <br />
+            <label htmlFor="">Description of Exercise: </label>
+            <input
+              type="text"
+              onChange={this.handleChange}
+              name="description"
+              value={this.state.description}
+              className="form-control"
+            />
+            <br />
+            {/* <label htmlFor="">Primary target of exercise: </label> */}
+            {/* <input type="text" onChange={this.handleChange} name="bodypart" /> */}
+            <select
+              className="form-control"
+              id="sel1"
+              onChange={this.handleChange}
+              name="bodypart"
+              //   value="Please Select a primary bodypart"
+            >
+              <option>Please Select a primary bodypart</option>
+              <option>chest</option>
+              <option>shoulders</option>
+              <option>biceps</option>
+              <option>triceps</option>
+              <option>legs</option>
+              <option>back</option>
+              <option>full body</option>
+              <option>misc</option>
+            </select>
+            <br />
 
-        <input type="submit" onClick={this.handleSubmit} />
-        {/* <button onClick={e => this.handleSubmit(e)}>Submit</button> */}
+            <input
+              type="submit"
+              className="btn btn-primary"
+              onClick={this.handleSubmit}
+            />
+            {/* <button onClick={e => this.handleSubmit(e)}>Submit</button> */}
+          </div>
+        </form>
       </div>
     );
   }

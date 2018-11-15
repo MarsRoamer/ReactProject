@@ -7,11 +7,13 @@ import BuildWorkout from "./components/BuildWorkout";
 import Login from "./components/Login";
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import AddNewExercise from "./components/AddNewExercise";
-import ConfirmBuiltWorkout from "./components/ConfirmBuiltWorkout";
 import DisplayWorkout from "./components/DisplayWorkout";
-import TableTest from "./components/TableTest";
-
 import "./App.css";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faDumbbell);
 
 class App extends Component {
   handleClick = e => {
@@ -36,18 +38,30 @@ class App extends Component {
   render() {
     const loggedIn = () => {
       if (this.props.userId === "") {
-        return <Login />;
+        return (
+          <Login
+            registerUser={this.props.registerUser}
+            createNewUser={this.props.createNewUser}
+          />
+        );
       }
     };
 
     return (
       <Router>
         <React.Fragment>
-          <Navbar />
+          <Navbar
+            loggedIn={this.props.loggedIn}
+            logOut={this.props.endSession}
+          />
 
           <Switch>
             {loggedIn()}
-            <Route exact path="/login" component={Login} />
+            <Route
+              exact
+              path="/login"
+              render={() => <Login registerUser={this.props.registerUser} />}
+            />
             <Route
               exact
               path="/addnewexercise"
@@ -56,22 +70,7 @@ class App extends Component {
               )}
             />
             <Route exact path="/buildworkout" render={() => <BuildWorkout />} />
-            <Route
-              exact
-              path="/tabletest"
-              render={() => <TableTest workout={this.props.workout} />}
-            />
-            <Route
-              exact
-              path="/confirmworkout"
-              render={() => (
-                <ConfirmBuiltWorkout
-                  userWorkout={this.props.workout}
-                  userId={this.props.userId}
-                  buildWorkout={this.props.buildWorkout}
-                />
-              )}
-            />
+            )} />
             <Route
               exact
               path="/displayworkout"
@@ -99,7 +98,8 @@ const mapStateToProps = state => {
   return {
     userId: state.session.userId,
     workout: state.workout,
-    liftHistory: state.liftHistory
+    liftHistory: state.liftHistory,
+    loggedIn: state.session.loggedIn
     // exercises: state.exercises
   };
 };
