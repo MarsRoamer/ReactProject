@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
-export default class Register extends Component {
+class Register extends Component {
   constructor() {
     super();
     this.state = {
@@ -18,15 +19,18 @@ export default class Register extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    fetch("/users", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(response => response.json())
-      .then(myJson => console.log(myJson));
+    // fetch("/users", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-type": "application/json; charset=UTF-8"
+    //   },
+    //   body: JSON.stringify(this.state)
+    // })
+    //   .then(response => response.json())
+    //   .then(myJson => console.log(myJson));
+    this.props.createNewUser(this.state);
+    this.setState({});
+    this.props.history.push("/buildworkout");
   };
 
   render() {
@@ -54,3 +58,5 @@ export default class Register extends Component {
     );
   }
 }
+
+export default withRouter(Register);

@@ -25,3 +25,31 @@ code {
   border: solid;
   width: 600px;
 }
+
+.userInput {
+  width: 60px;
+}
+
+.inputCols {
+  padding-left: 40px;
+}
+
+#login {
+  margin-top: 0;
+  min-height: 600px;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/12/20/15/sports-1452965_1280.jpg");
+  background-color: green;
+}
+
+/* #root {
+  min-height: 800px;
+  background-color: lightgray;
+} */
+
+body {
+  height: 100%;
+}
+
+#test {
+  font-family: "Permanent Marker", cursive;
+}

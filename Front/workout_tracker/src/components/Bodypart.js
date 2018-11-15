@@ -34,14 +34,14 @@ class Bodypart extends Component {
 
   render() {
     return (
-      <div>
+      <div className="mb-5">
         <form>
           <div className="card-group">
             <div className="col-sm-4">
               <div className="cards">
-                <h2>Chest</h2>
+                <h2 style={{ display: "flex" }}>Chest</h2>
                 {this.props.chest.map(exercise => (
-                  <div className="card">
+                  <div className="card" key={exercise.id}>
                     <div className="checkbox">
                       <label>
                         <input
@@ -118,7 +118,7 @@ class Bodypart extends Component {
                 </div>
               ))}
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-4 mb-5">
               <div className="cards">
                 <h2>Legs</h2>
                 {this.props.legs.map(exercise => (
@@ -143,6 +143,7 @@ class Bodypart extends Component {
             <input
               type="submit"
               onClick={this.handleSubmit}
+              className="btn btn-primary"
               value="Build Your Workout!"
             />
           </div>
